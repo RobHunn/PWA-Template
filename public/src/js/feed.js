@@ -4,6 +4,20 @@ var closeCreatePostModalButton = document.querySelector('#close-create-post-moda
 
 function openCreatePostModal() {
   createPostArea.style.display = 'block';
+  //send notification to add icon to home screen
+  if(deferredPrompt){
+    deferredPrompt.prompt();
+    deferredPrompt.userChoice//returns promise
+    .then((choiceResult)=>{
+      console.log(choiceResult.outcome);
+      if(choiceResult.outcome === 'dismissed'){
+        console.log('user dismissed instalation :( ');
+      }else{
+        console.log('user installed to home screen :) ');
+      }
+    })
+    deferredPrompt = null;
+  }
 }
 
 function closeCreatePostModal() {

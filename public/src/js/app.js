@@ -2,6 +2,7 @@
 if(!window.Promise){
     window.Promise = Promise
 }
+
 var deferredPrompt;
 
 //Check to see if serviceWorker is a property of the browser object. If it is then load our worker...
@@ -21,6 +22,8 @@ if('serviceWorker' in navigator){
 */
 
 window.addEventListener('beforeinstallprompt', (e) => {
+  console.log(`beforeinstallprompt fired!  ${e}`);
+  
     // Stash the event so it can be triggered later.
     deferredPrompt = e;
     return false;
